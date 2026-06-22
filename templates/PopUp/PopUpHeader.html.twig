@@ -1,0 +1,18 @@
+<div id="overlayheader">
+    <div id="popupHeader">
+        <div id="top">
+            <div id="name-role">
+                <p>
+                    Login : {{ app.user.username }}
+                </p>
+                {% if is_granted('ROLE_PENDING_STUDENT') or is_granted('ROLE_PENDING_TEACHER')%}
+                <p>Votre compte est en cours de validation par un administrateur</p>
+                {%  endif %}
+            </div>
+        </div>
+        <div id="buttons">
+            <button onclick="goToPath('/reset-password')">Modifier son mot de passe</button>
+            <button id="disconnect" onclick="goToPath('/logout')">Déconnexion</button>
+        </div>
+    </div>
+</div>

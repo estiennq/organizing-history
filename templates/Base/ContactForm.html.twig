@@ -1,0 +1,26 @@
+{% extends 'Base/Base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('Styles/Base/Form.css')}}">
+{% endblock %}
+
+{% block body %}
+    <div class="form formContact">
+        <div><label for="login" class="disable-label"> Prénom : </label>
+            <input type="text" id="login" readonly>
+        </div>
+        <div><label for="login" class="disable-label"> Nom : </label>
+            <input type="text" id="login" readonly>
+        </div>
+        <div><label for="login" class="disable-label"> Email : </label>
+            <input type="text" id="login" readonly>
+        </div>
+        <div><label for="login" class="disable-label"> Objet : </label>
+            <input type="text" id="login" readonly>
+        </div>
+        <div><label for="login" class="disable-label"> Message : </label>
+            <input type="text" id="login" readonly>
+        </div>
+        <button type="submit" class="btn">Envoyer</button>
+    </div>
+{% endblock %}

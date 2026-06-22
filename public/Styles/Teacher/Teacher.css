@@ -1,0 +1,88 @@
+/*Teacher Homepage*/
+.TeacherRoomsList :nth-child(1){
+    flex: 1;
+}
+.TeacherRoomsList :nth-child(2){
+    flex: 2;
+}
+/*Teacher Room*/
+.teacherRoomLevelRow.moveUp{
+    transform: translateY(-77px);
+    transition: all 0.3s ease-in-out;
+}
+
+.teacherRoomLevelRow.moveDown{
+    transform: translateY(77px);
+    transition: all 0.3s ease-in-out;
+}
+
+.teacherRoomLevelRow.delete{
+    opacity: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    border-width: 0;
+    overflow: hidden;
+    transition: all 0.3s ease-out;
+}
+
+.teacherRoomLevelList div:nth-child(1) {
+    flex: 0.5;
+}
+.teacherRoomLevelList div:nth-child(2) {
+    flex: 2;
+}
+.teacherRoomLevelList :nth-child(3) {
+    justify-content: center;
+    flex: 1;
+}
+.teacherRoomLevelList :nth-child(4) {
+    justify-content: center;
+    flex: 1;
+}
+.teacherRoomLevelList :nth-child(5) {
+    flex: 1;
+}
+.teacherRoomLevelList :nth-child(6) {
+    flex: 1;
+}
+
+/*Teacher Add Level*/
+.levelList div:nth-child(1){
+    flex: 4;
+}
+.levelList div:nth-child(2){
+    flex: 1;
+}
+.alreadyInLevel{
+    background-color: grey;
+}
+.alreadyInLevel button{
+    background-color: grey;
+    pointer-events: none;
+}
+
+/*Teacher Manage student*/
+button a{
+    color: white;
+    text-decoration: none;
+}
+
+.studentsList > div :nth-child(1){
+    flex: 1.5;
+}
+.studentsList > div :nth-child(2){
+    flex: 1;
+}
+.studentsList > div :nth-child(3){
+    flex: 1;
+    justify-content: center;
+}
+.studentsList > div :nth-child(4){
+    flex: 2;
+}
+.studentsList > div :nth-child(5){
+     flex: 1;
+}
+
+/*Add level*/

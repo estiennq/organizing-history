@@ -1,0 +1,130 @@
+.form{
+    margin: 3em auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.formContact {
+    flex-direction: column;
+    width: 30%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.formContact div {
+    width: 100%;
+}
+
+.formContact label {
+    color: black;
+}
+
+.formContact div:nth-child(5) input{
+    height: 100px;
+}
+
+.form form {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.form label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form button {
+    background-color: #5f5e83;
+    border: 2px solid #3d355d;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    margin : 1em auto;
+    color: white;
+}
+
+.form button:hover {
+    background-color: #264649;
+}
+ul{
+    list-style-type: none;
+}
+.agreeTerms div{
+    display: flex;
+    flex-direction: row;
+}
+.checkbox{
+    width: min-content!important;
+    margin: 0 0 5px 20px !important;
+}
+.passwordVerification > div{
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    pointer-events:none;
+    color: grey;
+}
+.passwordVerification > div > p{
+    font-size: smaller;
+    font-weight: bold;
+}
+.passwordVerification > div > label{
+    font-size: smaller;
+    margin-bottom: 0;
+}
+.disable-label {
+    color: #999;
+}
+
+.disable-input {
+    background-color: #f5f5f5;
+    color: #888;
+    cursor: not-allowed;
+}
+
+.passwordVerification{
+    position: relative;
+}
+
+.passwordVerification > div{
+    display: flex;
+}
+
+.passwordVerification > div > label > input{
+    width: min-content !important;
+    margin: 0 0 0 20px !important;
+}
+
+.passwordVerification > img.toggle-passwordVisibilityVisible, img.toggle-passwordVisibilityHidden{
+    width: 30px;
+    position: absolute;
+    right: 13px;
+    top: -53px;
+}
+
+.toggle-passwordVisibilityVisible{
+    display: none;
+}
+
+#errorMessage{
+    color: red;
+}
+div.alert{
+    text-align: center;
+    color: red;
+    font-style: italic;
+    font-size: small;
+}

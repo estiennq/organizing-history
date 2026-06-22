@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organizing History - Jeu Ludo-Éducatif</title>
+    <style>
+        /* Votre style CSS actuel reste inchangé */
+        div.contentHolder, div.box {
+            border: 1px solid black;
+        }
+        .contentHolder {
+            display: flex;
+            flex-wrap: wrap;
+            width: auto;
+            margin: 1em;
+            padding: 2em;
+        }
+        .box {
+            width: 500px;
+            height: 275px;
+            margin: 5px;
+            /*flex: 0 0 calc(33% - 10px);*/
+            box-sizing: border-box;
+            background-image: url(img/sceneholder.png);
+            background-repeat: round;
+            background-size: contain ;
+        }
+
+        .div-resources {
+            border: 1px solid;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+
+        .action {
+            border: 1px solid red;
+            margin:0px;
+            flex: 0 0 calc(16.6% - 10px);
+            box-sizing: border-box;
+            height: 275px;
+            width: 500px;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+
+
+        .perso {
+            /*margin:5px*/
+            flex: 0 0 calc(16.6% - 10px);
+            box-sizing: border-box;
+            height: 200px;
+            min-width: 200px;
+            background-size: contain;
+        }
+
+        .persoHolder{
+            border: 5px dashed orange;
+        }
+
+        .perso img {
+            width: 200px;
+            height: 200px;
+
+            pointer-events: none; /* Désactive les événements de pointer (comme le glisser-déposer) pour l'image */
+        }
+        .draggable {
+            cursor: move;
+        }
+
+
+
+    </style>
+</head>
+<body>
+<main>
+    <div class="contentHolder" id="contentHolder" ondragover="allowDrop(event)">
+        <div class="box" id="frameHolder1" ondrop="drop(event)" ondragover="allowDrop(event)">
+        </div>
+        <div class="box" id="frameHolder2" ondrop="drop(event)" ondragover="allowDrop(event)">
+        </div>
+        <div class="box" id="frameHolder3" ondrop="drop(event)" ondragover="allowDrop(event)">
+        </div>
+        <div class="box" id="frameHolder4" ondrop="drop(event)" ondragover="allowDrop(event)">
+        </div>
+        <div class="box" id="frameHolder5" ondrop="drop(event)" ondragover="allowDrop(event)">
+        </div>
+    </div>
+
+    <div class="div-resources" style="border: 1px black solid;" ondragover="allowDrop(event)" ondrop="drop(event)">
+        <!--<figure class="action draggable resource" id="action1" draggable="true" ondragstart="drag(event)" ondragover="allowDrop(event)" style="background-color:deepskyblue; background-image: url(img/scene1.png); background-repeat: round;">
+            Action 1
+            <div class="persoHolder" ondrop="drop(event)" ondragover="allowDrop(event)" style="position: relative; top: 30%; left:50%; width: 40%; height: 30%"></div>
+        </figure>-->
+        <figure class="action draggable resource" id="action2" draggable="true" ondragstart="drag(event)" ondragover="allowDrop(event)" style="background-color:dodgerblue; background-image: url(img/action-token.png); background-repeat: round;">
+            Action 2
+            <div class="persoHolder" ondrop="drop(event)" ondragover="allowDrop(event)" style="position: relative; top: 10%; left:10%; width: 20%; height: 20%"></div>
+            <div class="persoHolder" ondrop="drop(event)" ondragover="allowDrop(event)" style="position: relative; top: 30%; left:50%; width: 40%; height: 30%"></div>
+        </figure>
+
+        <figure class="character draggable resource" id="perso1" draggable="true" ondragstart="drag(event)">
+            <img src="img/character-token.png" alt="perso1" draggable="false">
+        </figure>
+        <!--<figure class="perso draggable resource" id="perso3" draggable="true" ondragstart="drag(event)">
+            <img src="img/Perso2.png" alt="perso2" draggable="false">
+        </figure> -->
+    </div>
+</main>
+
+<script>
+let objets = [
+        resource = {
+            nom : "action2",
+            imageToken : "url(img/action-token.png)",
+            imageActif : "url(img/action-background.png)"
+        },
+        perso1 = {
+            nom : "perso1",
+            imageToken : "url(img/character-token.png)",
+            imageActif : "url(img/character-active.png)"
+        }
+    ]
+
+    let instanceCounter = 0;
+
+    function allowDrop(event) {
+        event.preventDefault();
+    }
+
+    function drag(event) {
+        let draggedToken = document.getElementById(event.target.id);
+        event.dataTransfer.setData("text", draggedToken.id);
+    }
+
+    function drop(event) {
+        event.preventDefault();
+        let data = event.dataTransfer.getData("text");
+        let draggedElementOrigin = document.getElementById(data);
+        let draggedElement = draggedElementOrigin.classList.contains("resource") ? cloneToken(draggedElementOrigin) : draggedElementOrigin;
+        let dropTarget = event.target;
+
+        if(dropTarget.id === draggedElement.id){
+            return;
+        }
+
+        if(draggedElement.classList.contains("action")){
+            dropActionToken(dropTarget, draggedElement);
+        }
+        else if(draggedElement.classList.contains("character")){
+            dropPersoToken(dropTarget, draggedElement);
+        }
+
+
+        // Ajuster la position de l'élément glissé pour rester à l'intérieur de son parent
+        let rect = dropTarget.getBoundingClientRect();
+        let offsetX = event.clientX - rect.left;
+        let offsetY = event.clientY - rect.top;
+
+        if (offsetX < 0) {
+            offsetX = 0;
+        } else if (offsetX > rect.width) {
+            offsetX = rect.width;
+        }
+
+        if (offsetY < 0) {
+            offsetY = 0;
+        } else if (offsetY > rect.height) {
+            offsetY = rect.height;
+        }
+
+        draggedElement.style.left = offsetX + "px";
+        draggedElement.style.top = offsetY + "px";
+    }
+
+    function dropActionToken(dropTarget, draggedElement){
+        if(!dropTarget.classList.contains("box")){
+            if(!draggedElement.classList.contains("div-resources")){
+                draggedElement.parentElement.removeChild(draggedElement);
+            }
+            return;
+        }
+        dropTarget.appendChild(draggedElement);
+        checkCollisionAndRemoveBorder(dropTarget);
+    }
+    function dropPersoToken(dropTarget, draggedElement){
+        if(!dropTarget.classList.contains("persoHolder") || dropTarget.parentElement.classList.contains("resource") || dropTarget.childElementCount !== 0){
+            console.log(draggedElement);
+            if(!draggedElement.classList.contains("resources")){
+                draggedElement.parentElement.removeChild(draggedElement.id);
+            }
+            return;
+        }
+        dropTarget.appendChild(draggedElement);
+        checkCollisionAndRemoveBorder(dropTarget);
+    }
+
+    function cloneToken(token){
+        let clonedToken = token.cloneNode(true);
+        clonedToken.id = clonedToken.id + "-" + String(instanceCounter++);
+        clonedToken.classList.remove("resource");
+        return clonedToken;
+    }
+
+    function checkCollisionAndRemoveBorder(element) {
+        var allBorders = document.querySelectorAll('.action, .frameHolder');
+
+        allBorders.forEach(function (border) {
+            if (border !== element) {
+                if (isColliding(element, border)) {
+                    // Supprimer la bordure
+                    border.style.border = "none";
+                }
+            }
+        });
+    }
+
+    function isColliding(elem1, elem2) {
+        var rect1 = elem1.getBoundingClientRect();
+        var rect2 = elem2.getBoundingClientRect();
+
+        return (
+            rect1.left < rect2.right &&
+            rect1.right > rect2.left &&
+            rect1.top < rect2.bottom &&
+            rect1.bottom > rect2.top
+        );
+    }
+</script>
+</body>
+</html>

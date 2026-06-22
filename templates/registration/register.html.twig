@@ -1,0 +1,69 @@
+{% extends 'Base/Base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('Styles/Base/Form.css')}}">
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('JS/Base/GenerateLoginRegister.js') }}" defer></script>
+    <script src="{{ asset('JS/Base/ManagePassword.js') }}" defer></script>
+    <script src="{{ asset('JS/Base/ShowHidePassword.js') }}" defer></script>
+{% endblock %}
+
+{% block body %}
+    {{ form_errors(registrationForm) }}
+    <div class="form">
+    {{ form_start(registrationForm, {'attr': {'onsubmit': 'return verifiyPassword();'}}) }}
+        {{ form_row(registrationForm.lastName,{ label: 'Nom' }) }}
+        {{ form_row(registrationForm.firstName,{label:'Prénom'}) }}
+        <label for="login" class="disable-label">Login : (vous sera demandé à chaque connexion, retenez le bien ! )</label>
+        <input type="text" id="login" readonly class="disable-input">
+        {{ form_row(registrationForm.email) }}
+        <h2 style="display:none" id="errorMessage"></h2>
+        {{ form_row(registrationForm.plainPassword, { label: 'Mot de passe',
+            attr: {
+                minlength: 12,
+                maxlength: 30
+            }
+        }) }}
+        <div class="passwordVerification">
+            <img src="{{ asset('Styles/Base/img/eye-open.png') }}" class="toggle-passwordVisibilityVisible" onclick="togglePasswordVisibility()">
+            <img src="{{ asset('Styles/Base/img/eye-closed.png') }}" class="toggle-passwordVisibilityHidden" onclick="togglePasswordVisibility()">
+            <div>
+                <p>Le mot de passe doit contenir au moins :</p>
+            </div>
+            <div>
+                <label>12 caractères<input type="checkbox" class="disable-input" id="minNumberCondition"></label>
+            </div>
+            <div>
+                <label>1 majuscule<input type="checkbox" class="disable-input" id="lowCaseCondition"></label>
+
+            </div>
+            <div>
+                <label>1 minuscule<input type="checkbox" class="disable-input" id="upCaseCondition"></label>
+
+            </div>
+            <div>
+                <label>1 chiffre<input type="checkbox" class="disable-input" id="numberCondition"></label>
+
+            </div>
+            <div>
+                <label>1 caractère spécial<input type="checkbox" class="disable-input" id="speCaractCondition"></label>
+            </div>
+            <br>
+        </div>
+        <label for="confirmationPassword">Confirmer le mot de passe : </label>
+        <input type="password" id="confirmationPassword" minlength="12" maxlength="30" required>
+
+        {{ form_row(registrationForm.schoolName, {label:'Nom d\'établissement'}) }}
+        <div class="agreeTerms">
+            {{ form_row(registrationForm.agreeTerms, {label:'Accepter les conditions d\'utilisation', 'attr': {'class': 'checkbox'}}) }}
+            <a href="/terms-of-use"> Conditions d'utilisation </a>
+        </div>
+
+
+        <button type="submit" class="btn">Envoyer</button>
+
+    {{ form_end(registrationForm) }}
+    </div>
+{% endblock %}

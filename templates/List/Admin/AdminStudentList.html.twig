@@ -1,0 +1,11 @@
+<div>
+    <div>{{ data[i]['studentFirstName'] }} {{ data[i]['studentsLastName'] }}</div>
+    <div>{{ data[i]['studentRoomName'] }}</div>
+    <div>{{ data[i]['studentRoomTeacherName'] }}</div>
+    <div>
+        <form action="students/verify" method="post">
+            <input type="text" name="studentId" value="{{ data[i]['studentId'] }}" style="display: none">
+            <button id="adminStudentListButton">Voir formulaire</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,91 @@
+
+
+{% extends "Base/Base.html.twig" %}
+
+{% block javascripts %}
+    <script src="{{ asset('JS/Game/GameSlickTrack.js') }}"></script>
+    <script src="{{ asset('JS/Game/DragDrop.js') }}" defer></script>
+    <script src="{{ asset('JS/Game/LevelValidation.js') }}" defer></script>
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/Styles/Game/GameStyle.css')}}">
+    <link rel="stylesheet" href="{{ asset('/Styles/PopUp/PopUp.css')}}">
+{% endblock %}
+
+{% block popup %}
+    {# {{ include ('PopUp/PopUp.html.twig') }} #}
+{% endblock %}
+
+{% block body %}
+    <section class="game" data-difficulty-id="{{ difficultyId }}">
+        {% if pageAmount > 1 %}
+            <button class="slick-navigation next-button" onclick="goToSlick(1, {{ pageAmount }})">&#8250;</button>
+        {% else %}
+            <button class="slick-navigation next-button" onclick="goToSlick(1, {{ pageAmount }})" hidden>&#8250;</button>
+        {% endif %}
+        <button class="slick-navigation previous-button" onclick="goToSlick(-1, {{ pageAmount }})" hidden>&#8249;</button>
+        <article>
+            {% if pageAmount == 1 %}
+                <div class="slick current-slick" data-slick-index="0">
+                    {% for i in 0..boxAmount - 1 %}
+                        <div class="box">
+                            {{ i+1}}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% elseif pageAmount > 1 %}
+                {% for j in 0..pageAmount - 2 %}
+                    <div class="slick current-slick" data-slick-index="{{ j }}">
+                        {% for i in j * 6..(j + 1) * 6 - 1 %}
+                            <div class="box">
+                                {{ j+i+1}}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+                {% if boxAmount/6 != pageAmount %}
+                    <div class="slick" data-slick-index="{{ pageAmount - 1 }}">
+                        {% for i in (pageAmount - 1) * 6..boxAmount % ((pageAmount) * 6) - 1 %}
+                            <div class="box">
+                                {{ i+1}}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="slick" data-slick-index="{{ pageAmount - 1 }}">
+                        {% for i in 0..5 %}
+                            <div class="box">
+                                {{ i+1}}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endif %}
+        </article>
+        <div class="game-bottom">
+            <div class="resourceContainer">
+                {% for scene in scenes %}
+                    <figure class="action draggable resource" id="action-{{ scene.getId() }}" draggable="true" data-token-id="{{ scene.getId() }}" data-token-name="{{ scene.getSprite() }}" data-token-sprite="{{ scene.getSprite() }}" style="background-repeat: round;">
+                        <div>
+                            <span> {{ scene.getName() }}</span>
+                        </div>
+                        {% for characterPosition in scene.getCharacterPositions %}
+                            <div class="characterContainer" data-container-name="{{ characterPosition.getName() }}" data-container-id="{{ characterPosition.getId() }}" data-offset-x="{{ characterPosition.getOffsetX }}" data-offset-y="{{ characterPosition.getOffsetY }}" style="top: {{ characterPosition.getPositionY }}%; left:{{ characterPosition.getPositionX }}%;"></div>
+                        {% endfor %}
+                    </figure>
+                {% endfor %}
+                {% for character in characters %}
+                    <figure class="character draggable resource" id="perso{{ character.getId() }}" draggable="true" data-token-id="{{ character.getId() }}" data-token-name="{{ character.getName() }}" data-token-sprite="{{ character.getSprite() }}">
+                        <div class="title-character"> <span > {{ character.getName() }}</span></div>
+                        <img class="character" alt="perso-{{ character.getId() }}" draggable="false">
+                    </figure>
+                {% endfor %}
+            </div>
+            <button class="validityCheckButton">Vérifier</button>
+        </div>
+    </section>
+{% endblock %}
+{% block footer %}
+<!-- On override le footer pour l'enlever de la page Game -->
+{% endblock %}

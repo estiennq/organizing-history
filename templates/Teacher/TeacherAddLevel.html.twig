@@ -1,0 +1,17 @@
+{% extends "Base/Base.html.twig" %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('Styles/Teacher/Teacher.css')}}">
+    <link rel="stylesheet" href="{{ asset('Styles/Base/List.css')}}">
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('JS/Teacher/AddLevel.js') }}" defer></script>
+{% endblock %}
+
+{% block headerLeft %}
+    {% include 'Teacher/Assets/ButtonRoom.html.twig' %}
+{% endblock %}
+
+{% block pageFooter %}
+    <button onclick="subToPath('/add-level')">Revenir au salon</button>
+{% endblock %}

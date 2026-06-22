@@ -1,0 +1,6 @@
+<div>
+    <div>{{ data[i]['teacherFirstName'] }} {{ data[i]['teacherLastName'] }}</div>
+    <div>{{ data[i]['teacherSchool'] }}</div>
+    <div><button class="adminTeacherButtonAccepted" onclick="showPeopleConfirmationPopup('{{ popupAcceptedText }}', acceptTeacher,{{ data[i]['teacherId'] }})">Valider</button></div>
+    <div><button class="adminTeacherButtonDenied" onclick="showPeopleConfirmationPopup('{{ popupDeniedText }}', denyTeacher, {{ data[i]['teacherId'] }})">Refuser</button></div>
+</div>

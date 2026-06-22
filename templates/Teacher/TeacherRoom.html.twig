@@ -1,0 +1,25 @@
+{% extends "Base/Base.html.twig" %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('Styles/Teacher/Teacher.css')}}">
+    <link rel="stylesheet" href="{{ asset('Styles/Base/List.css')}}">
+    <link rel="stylesheet" href="{{ asset('styles/PopUp/PopUp.css')}}">
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('JS/Teacher/RowOrderer.js') }}" defer></script>
+{% endblock %}
+
+{% block headerLeft %}
+    {% include 'Teacher/Assets/ButtonRoom.html.twig' %}
+{% endblock %}
+
+{% block popup %}
+    {# {{ include ('PopUp/PopUp.html.twig') }} #}
+{% endblock %}
+
+{% block pageFooter %}
+    <button onclick="showPeopleConfirmationPopup('{{ popupAcceptedText }}', deleteRoom, {{ id }})">Supprimer le salon</button>
+    <button onclick="addToPath('/manage-students');">Gérer les élèves</button>
+    <button onclick="addToPath('/add-level');">Ajouter un chapitre</button>
+    <button onclick="goToPath('/teacher');">Retour</button>
+{% endblock %}

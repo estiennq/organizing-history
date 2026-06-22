@@ -1,0 +1,31 @@
+.hero {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    gap: 50px;
+    align-items: center;
+}
+
+.hero p {
+    line-height: 1.6;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.hero .game-image {
+    max-width: 100%;
+    height: auto;
+}
+
+.stats-number {
+    margin-bottom: 3em;
+    margin-left: 3em;
+    display: inline-block;
+    border-radius: 8px;
+    border: 2px solid #DDDBCB; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 20px;
+}

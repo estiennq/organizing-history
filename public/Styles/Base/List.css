@@ -1,0 +1,61 @@
+.list{
+    width: 65%;
+    margin:auto;
+}
+
+.list > div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    height: 50px;
+    text-align: start;
+    min-width: 950px;
+}
+.list .clickable:hover{
+    background-color: #cccccc !important;
+}
+.list > div > div{
+    display: flex;
+    align-items: center;
+    margin: 0px 10px;
+    font-size: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 50px;
+}
+
+.headerList div{
+    background-color: #dadada;
+}
+
+.headerList > div > .div1:empty {
+    display: none !important;
+}
+
+.headerList .div1:empty{
+    display: none !important;
+}
+.headerList .div2:empty{
+    display: none !important;
+}
+.headerList .div3:empty{
+    display: none !important;
+}
+.headerList .div4:empty{
+    display: none !important;
+}
+.headerList .div5:empty{
+    display: none !important;
+}
+.headerList .div6:empty{
+    display: none !important;
+}
+
+
+.div1,.div2,.div3,.div4,.div5,.div6{
+   font-weight: bold;
+}

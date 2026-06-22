@@ -1,0 +1,7 @@
+<div>
+    <div>{{ data[i]['studentFullName'] }}</div>
+    <div>{{ data[i]['studentUsername'] }}</div>
+    <div>{{ data[i]['studentCompletion'] }}%</div>
+    <div>{{ data[i]['studentPDF'] }}</div>
+    <div><button class="teacherTableStudentsButtonDeleteRow" onclick="showPeopleConfirmationPopup('{{ popupAcceptedText }}{{ data[i]['studentFullName'] }} ?', deleteStudent, {{ data[i]['studentId'] }})">supprimer</button></div>
+</div>

@@ -1,0 +1,90 @@
+{% extends 'Base/Base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/Styles/HomepageLoginSignUp/HomepageLoginSignUp.css')}}">
+{% endblock %}
+
+{#
+{% block headerRight %}
+        <button class="home-button" onclick="goToPath('/SignUp');">Demande d'inscription</button>
+        <button class="home-button" onclick="goToPath('/Login');">Se connecter</button>
+{% endblock %}
+#}
+
+{% block pageHeader %}
+{% endblock %}
+
+{% block body %}
+    <section class="hero">
+        <div class="illustrationContainer"><img class="heroIllustration" src="{{ asset('img/Scenes/War/War-active.png') }}" alt="Organizing History"></div>
+        <div class="title-container">
+            <h1 class="main-title">Bienvenue sur Organizing history !</h1>
+            <h2>
+                <span></span>
+                L'histoire est en jeu
+                <span></span>
+            </h2>
+        </div>
+        <div class="description-containers">
+            <div class="description">
+                <h1 class="description-title">Le jeu</h1>
+                <p>
+                    Organizing History est un jeu ludo-éducatif vous permettant d'explorer et d'apprendre l'histoire de manière interactive.
+                    Rejoignez-nous pour une expérience éducative captivante !
+                </p>
+            </div>
+            <div class="description">
+                <h1 class="description-title">Commencer l'aventure</h1>
+                <p>
+                    Retrouvez les premiers chapitres d'histoires déjà implémentés en réalisant une demande d'inscription si vous êtes professeur.
+                    Si vous êtes élève, demandez à votre professeur de vous y inscrire.
+                </p>
+            </div>
+        </div>
+    </section>
+    <section class="level-list">
+        <h1> Comment jouer </h1>
+        <p> Le jeu se présente en deux espaces : les cases et la barre de ressources contenant des scènes et des personnages historiques.
+            Selectionnez une scène dans la barre de ressources et l'insérer dans une case.
+            Ajoutez les personnages correspondants à la scène dans les emplacements dédiés délimités par des pointillés.
+            Ordonnez les cases pour qu'elles correspondent à la chronologie de l'évènement historique correspondant au titre de la page.
+            Vérifier votre réponse puis corrigez vous si nécessaire jusqu'à que vous trouvez la bonne configuration.
+            Plus vous avancerez dans les niveaux, plus l'évenement historique sera détaillé et donc plus complexe à résoudre.
+            A vous de jouer !
+        </p>
+        <div class="level-container">
+            <div class="level">
+                <img src="{{ asset('img/ww1-empty.png') }}" alt="exemple-premiere-guerre-mondiale-cases-vides">
+            </div>
+            <div class="level">
+                <img src="{{ asset('img/ww1-scene.png') }}" alt="exemple-premiere-guerre-mondiale-scene">
+            </div>
+            <div class="level">
+                <img src="{{ asset('img/ww1-scenes-chara.png') }}" alt="exemple-deuxieme-guerre-mondiale-scenes-et-personnages">
+            </div>
+            <div class="level">
+                <img src="{{ asset('img/ww1-scenes-chara-error.png') }}" alt="exemple-deuxieme-guerre-mondiale-scenes-et-personnages-erreur">
+            </div>
+        </div>
+    </section>
+    <section class="number">
+        <h1> À propos de <span> Organizing History </span> </h1>
+        <div class="infos">
+            <div class="stats-container">
+                <div class="stats-number">900+<br>Nombre de joueurs possible en simultané</div>
+                <div class="stats-number">6+<br>Nombre d'écoles déjà partenaires</div>
+            </div>
+            <p>
+                Organizing History a été crée par une équipe de 8 étudiants en 2<sup>ème</sup> année de BUT Informatique.
+                Leur objectif était de réaliser un jeu ludo-éducatif à destination des collégiens.
+            </p>
+        </div>
+    </section>
+    <section class="join">
+        <div>
+            <h1> Rejoignez-nous ! </h1>
+            <div class="button-container">
+                <button class="home-button" onclick="goToPath('/register');"> S'inscrire </button>
+            </div>
+        </div>
+    </section>
+{% endblock %}

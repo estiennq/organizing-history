@@ -1,0 +1,13 @@
+{% extends "Base/Base.html.twig" %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('Styles/Teacher/Teacher.css')}}">
+    <link rel="stylesheet" href="{{ asset('Styles/Base/List.css')}}">
+{% endblock %}
+
+{% block headerLeft %}
+    {% include 'Teacher/Assets/ButtonRoom.html.twig' %}
+{% endblock %}
+
+{% block pageFooter %}
+    <button onclick="addToPath('/create-room');">Crée un salon</button>
+{% endblock %}

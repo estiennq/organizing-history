@@ -1,0 +1,15 @@
+{% extends "Base/Base.html.twig" %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/Styles/Admin/Admin.css')}}">
+{% endblock %}
+
+{% block body %}
+    <div class="adminButtonSpace">
+        <div class="SelectRoleButton" onclick="window.location.href='/admin/teachers';">
+            <h2>Professeurs</h2>
+        </div>
+        <div class="SelectRoleButton" onclick="window.location.href='/admin/students';">
+            <h2>Élèves</h2>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'Base/Base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('Styles/Teacher/Teacher.css')}}">
+    <link rel="stylesheet" href="{{ asset('Styles/Base/Form.css')}}">
+    <link rel="stylesheet" href="{{ asset('/Styles/PopUp/PopUp.css')}}">
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('JS/Base/GenerateLoginRegister.js') }}" defer></script>
+    <script src="{{ asset('JS/Base/GenerateStudentPassword.js') }}" defer></script>
+    <script src="{{ asset('JS/Base/ManagePassword.js') }}" defer></script>
+    <script src="{{ asset('JS/Base/ShowHidePassword.js') }}" defer></script>
+{% endblock %}
+
+{% block body %}
+<div class="form">
+    {{ form_errors(registrationForm) }}
+
+    {{ form_start(registrationForm, {'attr': {'onsubmit': 'return verifiyPassword();'}}) }}
+        {{ form_row(registrationForm.lastName) }}
+        {{ form_row(registrationForm.firstName) }}
+        <label for="login" class="disable-label">Login : (vous sera demandé à chaque connexion de votre élève ! )</label>
+        <input type="text" id="login" readonly class="disable-input">
+        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.plainPassword, { label: 'Mot de passe pour votre élève' , class: 'disable-label',
+            label_attr: {
+            class: 'disable-label'
+            },
+            attr: {
+                class: 'disable-input'
+            }
+        }) }}
+
+        <div class="agreeTerms">
+            {{ form_row(registrationForm.agreeTerms, {label:'Vous acceptez les conditions d\'utilisation', 'attr': {'class': 'checkbox'}}) }}
+        </div>
+        {{ form_row(registrationForm.consentForm,{
+            name: 'userFile'
+        }) }}
+        <h2 style="color: red;">{{ pdfError }}</h2>
+
+        <button type="submit" class="btn">Inscrire</button>
+    {{ form_end(registrationForm) }}
+</div>
+{% endblock %}

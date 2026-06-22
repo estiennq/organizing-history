@@ -1,0 +1,47 @@
+{% extends 'Base/Base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('Styles/Base/Form.css')}}">
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('JS/Base/ShowHidePassword.js') }}" defer></script>
+{% endblock %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+    <div class="form">
+        <form method="post">
+
+            {% if app.user %}
+                <div class="mb-3">
+                    Vous êtes connecté(e) en tant que {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Déconnexion</a>
+                </div>
+            {% else %}
+
+            {% if error %}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+            <label for="inputUsername">Identifiant</label>
+            <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus>
+            <label for="inputPassword">Mot de passe</label>
+            <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+            <div class="passwordVerification">
+                <img src="{{ asset('Styles/Base/img/eye-open.png') }}" class="toggle-passwordVisibilityVisible" onclick="togglePasswordVisibility()">
+                <img src="{{ asset('Styles/Base/img/eye-closed.png') }}" class="toggle-passwordVisibilityHidden" onclick="togglePasswordVisibility()">
+            </div>
+
+        <input type="hidden" name="_csrf_token"
+               value="{{ csrf_token('authenticate') }}"
+        >
+
+                <button class="btn btn-lg btn-primary" type="submit">
+                    Connexion
+                </button>
+                <a class="slick-navigation" onclick="goToPath('/reset-password')">Mot de passe oublié </a>
+            {% endif %}
+
+
+        </form>
+    </div>
+{% endblock %}

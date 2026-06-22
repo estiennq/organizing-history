@@ -1,0 +1,9 @@
+{% extends "Base/Base.html.twig" %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/Styles/Admin/Admin.css')}}">
+    <link rel="stylesheet" href="{{ asset('/Styles/PopUp/PopUp.css')}}">
+    <link rel="stylesheet" href="{{ asset('Styles/Base/List.css')}}">
+{% endblock %}
+{% block popup %}
+    {# {{ include ('PopUp/PopUp.html.twig') }} #}
+{% endblock %}

@@ -1,0 +1,56 @@
+/*Page Admin*/
+.adminButtonSpace{
+    display: flex;
+    margin: 3em;
+}
+
+.SelectRoleButton, .AdminStudentValid div{
+    border: 1px solid black;
+    border-radius: 10px;
+    /*display: inline-block;*/
+    padding: 5em;
+    margin: auto;
+}
+.AdminStudentValid div{
+    margin: 3em;
+}
+.SelectRoleButton:hover, .AdminStudentValid div:hover{
+    background-color: #c9c9c9;
+}
+
+/*Page Eleves*/
+.adminListStudent :nth-child(1){
+    flex: 2;
+}
+.adminListStudent :nth-child(2){
+    flex: 2;
+}
+.adminListStudent :nth-child(3){
+    flex: 2;
+}
+.adminListStudent :nth-child(4){
+    flex: 1;
+}
+
+/*Page Eleve Verif*/
+.AdminVerification{
+    display: flex;
+    justify-content: space-around;
+}
+
+.AdminStudentPDF{
+    align-items: end;
+}
+/*Teacher*/
+.adminListTeacher :nth-child(1){
+    flex: 3;
+}
+.adminListTeacher :nth-child(2){
+    flex: 3;
+}
+.adminListTeacher :nth-child(3){
+    flex: 1;
+}
+.adminListTeacher :nth-child(4){
+    flex: 1;
+}

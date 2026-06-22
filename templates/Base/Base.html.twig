@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="{{ asset('/Styles/Base/Base.css')}}">
+        <link rel="stylesheet" href="{{ asset('/Styles/PopUp/PopUpHeader.css')}}">
+
+        {% block stylesheets %}
+        {% endblock %}
+
+        <script src="{{ asset('JS/PopUp/PopUp.js') }}"></script>
+        <script src="{{ asset('JS/Base/PageManager.js') }}"></script>
+        {% block javascripts %}
+        {% endblock %}
+    </head>
+    <body>
+        <header>
+            <div id="header-left">
+                    {% if is_granted('ROLE_ADMIN') %}
+                       <img id="logo" src="{{ asset('Styles/Base/img/logo.png') }}" alt="logo" onclick="goToPath('/admin')"/>
+                    {% elseif is_granted('ROLE_TEACHER') %}
+                        <img id="logo" src="{{ asset('Styles/Base/img/logo.png') }}" alt="logo" onclick="goToPath('/teacher')"/>
+                    {% elseif is_granted('ROLE_STUDENT') %}
+                        <img id="logo" src="{{ asset('Styles/Base/img/logo.png') }}" alt="logo" onclick="goToPath('/student')"/>
+                    {% else %}
+                        <img id="logo" src="{{ asset('Styles/Base/img/logo.png') }}" alt="logo" onclick="goToPath('/')" />
+                    {% endif %}
+
+                {% block headerLeft %}
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <button class="home-button" onclick="goToPath('/admin')">Gestion d'accès</button>
+                    {% elseif is_granted('ROLE_TEACHER') %}
+                        <button class="home-button" onclick="goToPath('/teacher')">Salons</button>
+                    {% elseif is_granted('ROLE_STUDENT') %}
+                        <button class="home-button" onclick="goToPath('/student')">Chapitres</button>
+                    {% elseif is_granted('ROLE_PENDING_STUDENT') or is_granted('ROLE_PENDING_TEACHER')%}
+
+                    {% endif %}
+                {% endblock %}
+            </div>
+
+            <div id="header-right">
+                {% block headerRight %}
+                    {% if app.user %}
+                        <div id="pseudo-role">
+                            <p>{{ app.user.firstName }} {{ app.user.lastName }}</p>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <p> Administrateur·rice </p>
+                            {% elseif is_granted('ROLE_TEACHER')%}
+                                <p> Professeur·e</p>
+                            {% elseif is_granted('ROLE_STUDENT')%}
+                                <p> Élève </p>
+                            {% elseif (is_granted('ROLE_PENDING_STUDENT')) or (is_granted('ROLE_PENDING_TEACHER')) %}
+                                <p> En attente de validation</p>
+                            {% endif %}
+                            {% include "PopUp/PopUpHeader.html.twig" %}
+                        </div>
+                        <img id=profil src="{{ asset('Styles/Base/img/profil.png') }}" alt="" onclick="togglePopupHeader()">
+                    {% else %}
+                        <button class="home-button" onclick="goToPath('/register');">Demande d'inscription</button>
+                        <button class="home-button" onclick="goToPath('/login');">Se connecter</button>
+                    {% endif %}
+
+                {% endblock %}
+            </div>
+        </header>
+
+        <main>
+            {% block pageHeader %}
+            <div class="pageHeader">
+                <h1>{{ pageName }}</h1>
+                <hr>
+            </div>
+            {% endblock %}
+
+            {% block body %}
+            {% endblock %}
+            {% block popup %}{% endblock %}
+            <section class="pageFooter">{% block pageFooter %}{% endblock %}</section>
+        </main>
+        {% block footer %}
+        <footer>
+            <p>Organizing History</p>
+            <div class="links">
+                <a href="/terms-of-use"> Conditions d'utilisation </a>
+                <a href="/contact-form"> Formulaire de contact</a>
+            </div>
+        </footer>
+        {% endblock %}
+    </body>
+</html>

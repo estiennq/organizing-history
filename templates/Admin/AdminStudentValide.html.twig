@@ -1,0 +1,25 @@
+{% extends "Base/Base.html.twig" %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/Styles/Admin/Admin.css')}}">
+    <link rel="stylesheet" href="{{ asset('/Styles/PopUp/PopUp.css')}}">
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('JS/Admin/SendStudentId.js') }}"></script>
+{% endblock %}
+
+{% block popup %}
+    {# {{ include ('PopUp/PopUp.html.twig') }} #}
+{% endblock %}
+{% block body %}
+    <div class="AdminVerification">
+        <div class="AdminStudentValid">
+            <div onclick="showPeopleConfirmationPopup('{{ popupAcceptedText }}', acceptStudent, {{ studentId }})">Valider</div>
+            <div onclick="showPeopleConfirmationPopup('{{ popupDeniedText }}', denyStudent, {{ studentId }})">Refuser</div>
+        </div>
+
+        <div class="AdminStudentPDF">
+            <embed src="{{ asset('ConsentForm/Base/Formulaire-de-Consentement-Organizing-History.pdf') }}" width="800" height="1200" type="application/pdf"/>
+        </div>
+    </div>
+{% endblock %}
