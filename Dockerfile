@@ -5,9 +5,12 @@ RUN a2enmod rewrite
 RUN apt-get update && apt-get install -y \
     libpq-dev \
     libicu-dev \
+    libzip-dev \
+    unzip \
     && docker-php-ext-install \
         pdo_pgsql \
         intl \
+        zip \
     && rm -rf /var/lib/apt/lists/*
 
 RUN printf '<VirtualHost *:80>\n\
@@ -24,6 +27,6 @@ WORKDIR /var/www/html
 
 COPY . .
 
-RUN APP_ENV=prod composer install --no-dev --optimize-autoloader --no-interaction
+RUN APP_ENV=prod composer install --no-dev --optimize-autoloader --no-interaction --no-scripts
 
 RUN chown -R www-data:www-data var/
