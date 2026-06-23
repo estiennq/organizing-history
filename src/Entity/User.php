@@ -58,7 +58,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     // la room dans laquelle se trouve l'élève
     #[ORM\ManyToOne(inversedBy: 'students')]
     #[ORM\JoinColumn(nullable: true)]
-    private ?room $room = null;
+    private ?Room $room = null;
 
     #[ORM\OneToMany(mappedBy: 'student', targetEntity: Plays::class, orphanRemoval: true)]
     private Collection $levelsPlayed;
@@ -249,12 +249,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getRoom(): ?room
+    public function getRoom(): ?Room
     {
         return $this->room;
     }
 
-    public function setRoom(?room $room): static
+    public function setRoom(?Room $room): static
     {
         $this->room = $room;
 
