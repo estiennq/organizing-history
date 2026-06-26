@@ -88,5 +88,62 @@
             </div>
         </footer>
         {% endblock %}
+
+        {% if app.session.get('demo_student_id') %}
+        <div id="demo-widget">
+            <div id="demo-panel" style="display:none;">
+                <p style="margin:0 0 8px; font-weight:bold; color:#333;">Session démo</p>
+                <table style="border-collapse:collapse; width:100%; font-size:0.9em; color:#333;">
+                    <tr>
+                        <td style="padding:4px 8px 4px 0; color:#555;">Élève</td>
+                        <td style="padding:4px 0;"><strong>{{ app.session.get('demo_student_username') }}</strong></td>
+                    </tr>
+                    <tr>
+                        <td style="padding:4px 8px 4px 0; color:#555;">Professeur</td>
+                        <td style="padding:4px 0;"><strong>{{ app.session.get('demo_teacher_username') }}</strong></td>
+                    </tr>
+                    <tr>
+                        <td style="padding:4px 8px 4px 0; color:#555;">Mot de passe</td>
+                        <td style="padding:4px 0;"><strong>{{ app.session.get('demo_password') }}</strong></td>
+                    </tr>
+                </table>
+                <hr style="margin:10px 0; border:none; border-top:1px solid #ddd;">
+                <a href="/demo/stop" style="color:#c0392b; font-size:0.85em;">Arrêter la démo</a>
+            </div>
+            <button id="demo-toggle" onclick="
+                var p = document.getElementById('demo-panel');
+                p.style.display = p.style.display === 'none' ? 'block' : 'none';
+            ">🎓 Démo</button>
+        </div>
+        <style>
+            #demo-widget {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                z-index: 9999;
+                text-align: right;
+            }
+            #demo-panel {
+                background: white;
+                border: 1px solid #ccc;
+                border-radius: 8px;
+                padding: 14px 16px;
+                margin-bottom: 8px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+                text-align: left;
+                min-width: 240px;
+            }
+            #demo-toggle {
+                background: #555;
+                color: white;
+                border: none;
+                border-radius: 20px;
+                padding: 8px 16px;
+                cursor: pointer;
+                font-size: 0.9em;
+            }
+            #demo-toggle:hover { background: #333; }
+        </style>
+        {% endif %}
     </body>
 </html>
