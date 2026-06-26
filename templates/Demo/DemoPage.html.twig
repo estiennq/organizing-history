@@ -2,24 +2,13 @@
 
 {% block body %}
     <section class="join" style="flex-direction: column; align-items: center; padding: 60px 20px; gap: 20px;">
-        <h1 style="text-align: center;">Mode démo</h1>
-        <p style="text-align: center;">Utilisez ces identifiants pour découvrir l'application :</p>
-
-        <div style="display: flex; gap: 40px; flex-wrap: wrap; justify-content: center; margin-top: 20px;">
-            <div style="background: white; border: 2px solid #ccc; border-radius: 10px; padding: 30px; min-width: 220px;">
-                <h2 style="margin-top: 0;">Élève</h2>
-                <p><strong>Identifiant :</strong> royerc</p>
-                <p><strong>Mot de passe :</strong> 123456</p>
-            </div>
-            <div style="background: white; border: 2px solid #ccc; border-radius: 10px; padding: 30px; min-width: 220px;">
-                <h2 style="margin-top: 0;">Professeur</h2>
-                <p><strong>Identifiant :</strong> blancham</p>
-                <p><strong>Mot de passe :</strong> 123456</p>
-            </div>
-        </div>
-
-        <div class="button-container" style="margin-top: 30px;">
-            <button class="home-button" onclick="goToPath('/login');">Se connecter</button>
+        <h1 style="text-align: center; color: #333;">Mode démo</h1>
+        <p style="text-align: center; color: #333; max-width: 500px;">
+            Découvrez l'application en tant qu'élève et professeur.<br>
+            Des comptes temporaires seront créés pour votre session.
+        </p>
+        <div class="button-container" style="margin-top: 20px;">
+            <button class="home-button" onclick="goToPath('/demo/start');">Lancer la démo</button>
         </div>
     </section>
 {% endblock %}
