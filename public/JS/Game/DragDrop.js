@@ -70,7 +70,7 @@ class TokenContainer{
             return;
         }
         event.preventDefault();
-        let data = event.dataTransfer.getData("text");
+        let data = event.dataTransfer.getData("text/plain");
         let draggedElementOrigin = document.getElementById(data);
         let draggedElement = draggedElementOrigin.classList.contains("resource") ? this.cloneToken(draggedElementOrigin) : draggedElementOrigin;
         let closestParent = this.element.closest(".characterContainer, .box");
@@ -234,7 +234,7 @@ class ResourceBar extends TokenContainer{
             return;
         }
         event.preventDefault();
-        let data = event.dataTransfer.getData("text");
+        let data = event.dataTransfer.getData("text/plain");
         let draggedElement = document.getElementById(data);
         let draggedElementParentAction = draggedElement.closest(".action");
         let dropResourceBarAudio = new Audio('/Sounds/deleteToken.mp3');
@@ -300,12 +300,10 @@ class Token{
             return;
         }
         event.stopPropagation();
-        let draggedToken = document.getElementById(event.target.id);
-        event.dataTransfer.setData("text", draggedToken.id);
+        event.dataTransfer.setData("text/plain", this.element.id);
 
         let dragAudio= new Audio('/Sounds/drag.mp3');
         this.playSound(dragAudio);
-        event.dataTransfer.setData("text", draggedToken.id);
     }
 
     setSprite(spriteId){}
