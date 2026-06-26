@@ -113,8 +113,7 @@ function goBackToLevels(event) {
     event.stopPropagation();
     event.target.removeEventListener('click', this.validate);
 
-    let isDemoMode = document.querySelector('.game').dataset.demoMode === 'true';
-    goToPath(isDemoMode ? '/demo' : '/student');
+    goToPath('/student');
 }
 function goNextDifficulty(event) {
     event.preventDefault();

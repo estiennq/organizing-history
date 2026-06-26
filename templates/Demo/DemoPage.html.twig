@@ -11,19 +11,17 @@
             <h2>Essayez le jeu sans créer de compte</h2>
         </div>
     </section>
-    <section class="level-list">
-        <h1>Chapitres disponibles</h1>
-        <div class="level-container">
-            {% for level in levels %}
-                {% if level.getDifficulties()|length > 0 %}
-                    <div class="description">
-                        <h1 class="description-title">{{ level.getDisplayName() }}</h1>
-                        <button class="home-button" onclick="goToPath('/demo/{{ level.getLevelName() }}/{{ level.getDifficulties()[0].getDifficultyName() }}')">
-                            Jouer
-                        </button>
-                    </div>
-                {% endif %}
-            {% endfor %}
+    <section class="join">
+        <div>
+            <h1>Identifiants de démonstration</h1>
+            <p>Utilisez ces identifiants pour accéder à l'application :</p>
+            <br>
+            <p><strong>Élève —</strong> Identifiant : royerc / Mot de passe : 123456</p>
+            <p><strong>Professeur —</strong> Identifiant : blancham / Mot de passe : 123456</p>
+            <br>
+            <div class="button-container">
+                <button class="home-button" onclick="goToPath('/login');">Se connecter</button>
+            </div>
         </div>
     </section>
 {% endblock %}
