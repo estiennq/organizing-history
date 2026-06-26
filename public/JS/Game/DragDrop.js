@@ -72,6 +72,7 @@ class TokenContainer{
         event.preventDefault();
         let data = event.dataTransfer.getData("text/plain");
         let draggedElementOrigin = document.getElementById(data);
+        if (!draggedElementOrigin) return;
         let draggedElement = draggedElementOrigin.classList.contains("resource") ? this.cloneToken(draggedElementOrigin) : draggedElementOrigin;
         let closestParent = this.element.closest(".characterContainer, .box");
         let closestParentBox = this.element.closest(".box");
@@ -236,6 +237,7 @@ class ResourceBar extends TokenContainer{
         event.preventDefault();
         let data = event.dataTransfer.getData("text/plain");
         let draggedElement = document.getElementById(data);
+        if (!draggedElement) return;
         let draggedElementParentAction = draggedElement.closest(".action");
         let dropResourceBarAudio = new Audio('/Sounds/deleteToken.mp3');
         dropResourceBarAudio.volume = 1;
