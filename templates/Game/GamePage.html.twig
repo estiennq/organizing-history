@@ -18,7 +18,7 @@
 {% endblock %}
 
 {% block body %}
-    <section class="game" data-difficulty-id="{{ difficultyId }}">
+    <section class="game" data-difficulty-id="{{ difficultyId }}" data-demo-mode="{{ demoMode is defined and demoMode ? 'true' : 'false' }}">
         {% if pageAmount > 1 %}
             <button class="slick-navigation next-button" onclick="goToSlick(1, {{ pageAmount }})">&#8250;</button>
         {% else %}
