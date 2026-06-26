@@ -383,10 +383,10 @@ class ActionToken extends Token{
         });
         let result = await response.text();
 
-        this.contextIconElement.addEventListener('click', (event) => {
-            event.stopPropagation();
-            showCustomPopUp(result, cancelPopUp, 'Fermer', null, null, cancelPopUp);
-        });
+        this.contextIconElement.setAttribute('title', result);
+
+        /*this.contextElement = document.createElement('span');
+        this.contextElement.classList.add('');*/
     }
 }
 
