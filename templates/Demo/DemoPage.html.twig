@@ -1,27 +1,25 @@
 {% extends 'Base/Base.html.twig' %}
 
-{% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('/Styles/HomepageLoginSignUp/HomepageLoginSignUp.css')}}">
-{% endblock %}
-
 {% block body %}
-    <section class="hero">
-        <div class="title-container">
-            <h1 class="main-title">Mode démo</h1>
-            <h2>Essayez le jeu sans créer de compte</h2>
-        </div>
-    </section>
-    <section class="join">
-        <div>
-            <h1>Identifiants de démonstration</h1>
-            <p>Utilisez ces identifiants pour accéder à l'application :</p>
-            <br>
-            <p><strong>Élève —</strong> Identifiant : royerc / Mot de passe : 123456</p>
-            <p><strong>Professeur —</strong> Identifiant : blancham / Mot de passe : 123456</p>
-            <br>
-            <div class="button-container">
-                <button class="home-button" onclick="goToPath('/login');">Se connecter</button>
+    <section class="join" style="flex-direction: column; align-items: center; padding: 60px 20px; gap: 20px;">
+        <h1 style="text-align: center;">Mode démo</h1>
+        <p style="text-align: center;">Utilisez ces identifiants pour découvrir l'application :</p>
+
+        <div style="display: flex; gap: 40px; flex-wrap: wrap; justify-content: center; margin-top: 20px;">
+            <div style="background: white; border: 2px solid #ccc; border-radius: 10px; padding: 30px; min-width: 220px;">
+                <h2 style="margin-top: 0;">Élève</h2>
+                <p><strong>Identifiant :</strong> royerc</p>
+                <p><strong>Mot de passe :</strong> 123456</p>
             </div>
+            <div style="background: white; border: 2px solid #ccc; border-radius: 10px; padding: 30px; min-width: 220px;">
+                <h2 style="margin-top: 0;">Professeur</h2>
+                <p><strong>Identifiant :</strong> blancham</p>
+                <p><strong>Mot de passe :</strong> 123456</p>
+            </div>
+        </div>
+
+        <div class="button-container" style="margin-top: 30px;">
+            <button class="home-button" onclick="goToPath('/login');">Se connecter</button>
         </div>
     </section>
 {% endblock %}
