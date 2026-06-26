@@ -350,4 +350,5 @@ div.resourceContainer .characterContainer{
      margin: 5px;
      background-color: #efeaea;
      z-index: 1;
+     cursor: pointer;
  }
