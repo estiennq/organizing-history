@@ -16,7 +16,7 @@ class Action
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type: 'text')]
     private ?string $context = null;
 
     #[ORM\ManyToOne(inversedBy: 'actions')]
